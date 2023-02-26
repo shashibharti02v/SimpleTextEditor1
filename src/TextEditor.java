@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -77,10 +78,25 @@ public class TextEditor implements ActionListener {
 
         // SET menuBar to our frame
         frame.setJMenuBar(menuBar);
-        frame.add(textArea);
+       // frame.add(textArea);
+        //create Content Pane
+        JPanel panel = new JPanel();
+        panel.setBorder(new EmptyBorder(5,5,5,5));
+        panel.setLayout(new BorderLayout(0,0));
+
+        // add text area to the panel
+
+        panel.add(textArea, BorderLayout.CENTER);
+
+        //Create scroll pane
+        JScrollPane scrollPane = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+       // Add Scroll pane to the panel
+        panel.add(scrollPane);
+
+        frame.add(panel);
 
         //set dimensions to our frame
-        frame.setBounds(100, 100, 500, 500);
+        frame.setBounds(100, 100, 800, 500);
 
         // set frame to visible
         frame.setVisible(true);
